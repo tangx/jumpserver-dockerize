@@ -87,7 +87,7 @@ services:
     network_mode: host
     environment: 
       CORE_HOST: ${CORE_HOST}
-      BOOTSTRAP_TOKEN: 0pxKLYWYyUOGdqCt
+      BOOTSTRAP_TOKEN: ${BOOTSTRAP_TOKEN}
       LOG_LEVEL: ERROR
     volumes:
       - "./logs/coco:/opt/coco/data/logs:rw"
@@ -106,7 +106,7 @@ services:
     network_mode: host
     environment: 
       JUMPSERVER_SERVER: ${JUMPSERVER_SERVER}
-      BOOTSTRAP_TOKEN: 0pxKLYWYyUOGdqCt
+      BOOTSTRAP_TOKEN: ${BOOTSTRAP_TOKEN}
       JUMPSERVER_KEY_DIR: /config/guacamole/keys
       GUACAMOLE_HOME: /config/guacamole
     volumes:
@@ -119,6 +119,5 @@ services:
     restart: always
     depends_on: 
       - jumpserver
-
 
 
