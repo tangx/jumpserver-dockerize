@@ -1,0 +1,16 @@
+{
+    "live-restore": true,
+    "max-concurrent-downloads": 3,
+    "max-concurrent-uploads": 3,
+    "disable-legacy-registry": true,
+    "registry-mirrors": [
+        "https://wlzfs4t4.mirror.aliyuncs.com"
+    ],
+    "log-driver": "json-file",
+    "log-opts": {
+        "labels": "io.rancher.project.name,log.ignore",
+        "max-size": "1g",
+        "max-file": "5"
+    },
+    "bip": "169.254.32.1/24"
+}

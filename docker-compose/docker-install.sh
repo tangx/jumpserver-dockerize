@@ -1,6 +1,8 @@
 #!/bin/bash
 #
 
+cd $(dirname $0)
+
 function centos()
 {
     # step 1: 安装必要的一些系统工具
@@ -10,6 +12,10 @@ function centos()
     # Step 3: 更新并安装 Docker-CE
     sudo yum makecache fast
     sudo yum -y install docker-ce
+
+    # Step 3.1: 更新 daemon.json
+    cp -a daemon.json /etc/docker/daemon.json
+
     # Step 4: 开启Docker服务
     sudo service docker start
 
@@ -24,12 +30,16 @@ function ubuntu()
     curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
     # Step 3: 写入软件源信息
     sudo add-apt-repository "deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
+    
+    # Step 3.1: 更新 daemon.json
+    cp -a daemon.json /etc/docker/daemon.json
+    
     # Step 4: 更新并安装 Docker-CE
     sudo apt-get -y update
     sudo apt-get -y install docker-ce
 
 }
 
-case $1 in )
+case $1 in 
 centos|ubuntu) $1 ;;
 esac
