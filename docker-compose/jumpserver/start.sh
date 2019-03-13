@@ -1,0 +1,41 @@
+#!/bin/bash
+#
+#
+cd $(dirname $0)
+
+## HOST
+export IPADDR=192.168.100.100
+
+### mysql
+export MYSQL_ROOT_PASSWORD=xxxxxxxx
+export MYSQL_DATABASE=jumpserver
+export MYSQL_USER=jumpserver
+export MYSQL_PASSWORD=yyyyyyyy
+
+## JUMPSERVER
+export SECRET_KEY=zzzzzzzzzzzzz
+export BOOTSTRAP_TOKEN=zzzzzzzzzzzzz
+
+### redis
+export REDIS_HOST=${IPADDR}
+export REDIS_PORT=6379
+
+
+export DB_ENGINE=mysql
+export DB_HOST=${IPADDR}
+export DB_PORT=3306
+export DB_USER=${MYSQL_USER}
+export DB_PASSWORD=${MYSQL_PASSWORD}
+export DB_NAME=${MYSQL_DATABASE}
+
+# COCO
+export CORE_HOST=http://${IPADDR}:8080
+
+# GUACOMALE
+export JUMPSERVER_SERVER=${CORE_HOST}
+export JUMPSERVER_KEY_DIR=/config/guacamole/keys
+export GUACAMOLE_HOME=/config/guacamole
+
+
+sed -i "s/192.168.100.100/${IPADDR}/g" default.conf
+docker-compose -f docker-compose.yml up -d
