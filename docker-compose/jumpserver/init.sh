@@ -32,4 +32,5 @@ Usage:
     docker-compose up -d
 
     openssl rand -base64 32 | cut -c 1-30
+    strings /dev/urandom |tr -dc A-Za-z0-9 | head -c16
 "
