@@ -14,10 +14,10 @@ bash docker-install.sh [centos|ubuntu]
 
 + 启动程序
 ```bash
+cd docker-compose/jumpserver
 cp -a env.conf env.local.conf
 # vi env.local.conf
 bash init.sh
-cd docker-compose/jumpserver
 docker-compose up -d
 ```
 
@@ -39,6 +39,6 @@ docker-compose up -d
 
 ## 感谢
 
-感谢 **jumpserver** 团队
-
-
++ jumpserver: https://github.com/jumpserver/jumpserver
++ 启动等待`dockerize` : https://github.com/jwilder/dockerize
++ 环境变量替换 envsubst: https://github.com/docker-library/docs/issues/496
