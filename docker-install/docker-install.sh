@@ -14,10 +14,11 @@ function centos()
     sudo yum -y install docker-ce
 
     # Step 3.1: 更新 daemon.json
-    cp -a daemon.json /etc/docker/daemon.json
+    mkdir -p /etc/docker
+    \cp -a daemon.json /etc/docker/daemon.json
 
     # Step 4: 开启Docker服务
-    sudo service docker start
+    systemctl restart docker
 
 }
 
@@ -32,12 +33,15 @@ function ubuntu()
     sudo add-apt-repository "deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
     
     # Step 3.1: 更新 daemon.json
-    cp -a daemon.json /etc/docker/daemon.json
+    mkdir -p /etc/docker
+    \cp -a daemon.json /etc/docker/daemon.json
     
     # Step 4: 更新并安装 Docker-CE
     sudo apt-get -y update
     sudo apt-get -y install docker-ce
 
+    # Step 5: 启动docker
+    systemctl restart docker
 }
 
 case $1 in 

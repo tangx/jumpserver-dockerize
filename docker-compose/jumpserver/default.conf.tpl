@@ -19,7 +19,7 @@ server {
     }
 
     location /socket.io/ {
-        proxy_pass       http://192.168.100.100:5000/socket.io/;  # 如果coco安装在别的服务器, 请填写它的ip
+        proxy_pass       http://${IPADDR}:5000/socket.io/;  # 如果coco安装在别的服务器, 请填写它的ip
         proxy_buffering off;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
@@ -31,7 +31,7 @@ server {
     }
 
     location /coco/ {
-        proxy_pass       http://192.168.100.100:5000/coco/;  # 如果coco安装在别的服务器, 请填写它的ip
+        proxy_pass       http://${IPADDR}:5000/coco/;  # 如果coco安装在别的服务器, 请填写它的ip
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header Host $host;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -39,7 +39,7 @@ server {
     }
 
     location /guacamole/ {
-        proxy_pass       http://192.168.100.100:8081/;  # 如果guacamole安装在别的服务器, 请填写它的ip
+        proxy_pass       http://${IPADDR}:8081/;  # 如果guacamole安装在别的服务器, 请填写它的ip
         proxy_buffering off;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
@@ -51,7 +51,7 @@ server {
     }
 
     location / {
-        proxy_pass http://192.168.100.100:8080;  # 如果jumpserver安装在别的服务器, 请填写它的ip
+        proxy_pass http://${IPADDR}:8080;  # 如果jumpserver安装在别的服务器, 请填写它的ip
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header Host $host;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

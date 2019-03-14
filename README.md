@@ -6,11 +6,26 @@
 
 ## 使用说明
 
-使用前，认真阅读官方文档: https://jumpserver.readthedocs.io/zh/docs/admin_guide.html
++ 安装 dockerd
+```bash
+cd docker-install
+bash docker-install.sh [centos|ubuntu]
+```
 
-+ windows 文件上传下载: https://jumpserver.readthedocs.io/zh/docs/user_asset.html#web-win
++ 启动程序
+```bash
+cp -a env.conf env.local.conf
+# vi env.local.conf
+bash init.sh
+cd docker-compose/jumpserver
+docker-compose up -d
+```
 
 ## 注意
+
++ 使用前，认真阅读官方文档: https://jumpserver.readthedocs.io/zh/docs/admin_guide.html
+
++ windows 文件上传下载: https://jumpserver.readthedocs.io/zh/docs/user_asset.html#web-win
 
 + 启动顺序: `redis` ->` mysql/postgresql` -> `jms + nginx` -> `coco / guacomale`
     + `coco / guacomale` 需要访问 `jms:8080` 才能注册, 需要自动做健康检查
@@ -25,4 +40,5 @@
 ## 感谢
 
 感谢 **jumpserver** 团队
+
 
