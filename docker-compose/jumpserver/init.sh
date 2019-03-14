@@ -7,10 +7,10 @@ cd $(dirname $0)
 # [ -f  ./env.conf ] && source ./env.conf
 [ -f  ./env.local.conf ] && source ./env.local.conf || {
     cp -a ./env.conf ./env.local.conf
-    sed -i "s/xxxxxxxx/$(openssl rand -base64 32 | cut -c 1-16)/" ./env.local.conf
-    sed -i "s/yyyyyyyy/$(openssl rand -base64 32 | cut -c 1-16)/" ./env.local.conf
-    sed -i "s/zzzzzzzzzzzzz/$(openssl rand -base64 32 | cut -c 1-20)/" ./env.local.conf
-    sed -i "s/bbbbbbbbbbb/$(openssl rand -base64 32 | cut -c 1-20)/" ./env.local.conf
+    sed -i "s/xxxxxxxx/$(strings /dev/urandom |tr -dc A-Za-z0-9 | head -c16)/" ./env.local.conf
+    sed -i "s/yyyyyyyy/$(strings /dev/urandom |tr -dc A-Za-z0-9 | head -c16)/" ./env.local.conf
+    sed -i "s/zzzzzzzzzzzzz/$(strings /dev/urandom |tr -dc A-Za-z0-9 | head -c24)/" ./env.local.conf
+    sed -i "s/bbbbbbbbbbb/$(strings /dev/urandom |tr -dc A-Za-z0-9 | head -c24)/" ./env.local.conf
 
     source ./env.local.conf
 }

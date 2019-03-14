@@ -42,3 +42,16 @@ docker-compose up -d
 + jumpserver: https://github.com/jumpserver/jumpserver
 + 启动等待`dockerize` : https://github.com/jwilder/dockerize
 + 环境变量替换 envsubst: https://github.com/docker-library/docs/issues/496
+
+
+## 勘误
+
+### 内核错误
+
+内核版本过低 `uname -sr` 。 升级内核，或安装低版本 `docker`
+
++ `yum -y install docker-ce-18.03.1.ce-1.el7.centos`
+
+```
+docker: Error response from daemon: OCI runtime create failed: container_linux.go:344: starting container process caused "process_linux.go:293: copying bootstrap data to pipe caused \"write init-p: broken pipe\"": unknown.
+```
