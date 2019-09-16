@@ -3,6 +3,25 @@
 
 cd $(dirname $0)
 
+function _daemonconfig()
+{
+echo '{
+    "live-restore": true,
+    "max-concurrent-downloads": 3,
+    "max-concurrent-uploads": 3,
+    "registry-mirrors": [
+        "https://wlzfs4t4.mirror.aliyuncs.com"
+    ],
+    "log-driver": "json-file",
+    "log-opts": {
+        "labels": "io.rancher.project.name,log.ignore",
+        "max-size": "1g",
+        "max-file": "5"
+    },
+    "bip": "169.254.32.1/24"
+}' > daemon.json
+
+}
 function centos()
 {
     # step 1: 安装必要的一些系统工具
@@ -44,6 +63,7 @@ function ubuntu()
     systemctl restart docker
 }
 
+
 case $1 in 
-centos|ubuntu) $1 ;;
+centos|ubuntu) _daemonconfig; $1 ;;
 esac
