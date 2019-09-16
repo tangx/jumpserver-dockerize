@@ -2,7 +2,6 @@
     "live-restore": true,
     "max-concurrent-downloads": 3,
     "max-concurrent-uploads": 3,
-    "disable-legacy-registry": true,
     "registry-mirrors": [
         "https://wlzfs4t4.mirror.aliyuncs.com"
     ],
