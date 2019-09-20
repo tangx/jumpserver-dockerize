@@ -7,7 +7,6 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
     && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 ENV TINI_VERSION=v0.18.0
-
 RUN wget -c https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-amd64 -O /usr/bin/tini \
     && chmod +x /usr/bin/tini
 
