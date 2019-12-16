@@ -73,7 +73,8 @@ function ubuntu()
 
 }
 
+source /etc/os-release
 
 case $1 in 
-centos|ubuntu) _daemonconfig; $1 ;;
+centos|ubuntu) _daemonconfig; ${ID} ;;
 esac
