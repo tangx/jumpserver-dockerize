@@ -14,16 +14,25 @@ bash docker-install.sh [centos|ubuntu]
 
 + 启动程序
 ```bash
+# 准备环境
+cd /tmp/
+wget -c wget -c https://github.com/tangx/jumpserver-dockerize/archive/v2.0.2.zip
+unzip -q v2.0.2.zip
 
-# 准备安装目录
-mkdir -p /data/docker-compose/
-cp -a docker-compose/jumpserver /data/docker-compose/
+# 安装容器环境
+/bin/bash /tmp/jumpserver-dockerize-2.0.1/docker-install/docker-install.sh
+
 
 # 下载启动命令 docker-compose
-curl -sfL https://ops-software-binary-1255440668.cos.ap-chengdu.myqcloud.com/docker-compose/1.24.0/docker-compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose 
+curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+
+# 安装jumpserver
+mkdir -p /data/docker-compose/
+cp -a /tmp/jumpserver-dockerize-2.0.1/docker-compose/jumpserver /data/docker-compose/
 
 # 初始化
-cd docker-compose/jumpserver
+cd /data/docker-compose/jumpserver
 
 # 执行初始化命令
 # 例如: /bin/bash init.sh 192.168.1.203
@@ -32,7 +41,8 @@ cd docker-compose/jumpserver
 # 后台启动命令
 docker-compose up -d
 
-# 通过浏览器访问页面
+# 首次运行需要初始化数据，需要等待一段时间。
+# 大约 10 分钟后，可以通过浏览器访问页面，验证安装结果
 ## 例如 http://192.168.1.203
 
 ```
