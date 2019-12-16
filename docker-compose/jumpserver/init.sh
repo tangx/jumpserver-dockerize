@@ -3,6 +3,15 @@
 #
 cd $(dirname $0)
 
+[ -z "$1" ] && {
+    echo "缺少服务器地址"
+    echo "Usage: $0 ipaddr"
+    echo "  ex: $0 192.168.33.33"
+    exit 1
+} || {
+    export IPADDR=$1
+}
+
 
 # [ -f  ./env.conf ] && source ./env.conf
 [ -f  ./env.local.conf ] && source ./env.local.conf || {
@@ -12,6 +21,7 @@ cd $(dirname $0)
     sed -i "s/zzzzzzzzzzzzz/$(strings /dev/urandom |tr -dc A-Za-z0-9 | head -c24)/" ./env.local.conf
     sed -i "s/bbbbbbbbbbb/$(strings /dev/urandom |tr -dc A-Za-z0-9 | head -c24)/" ./env.local.conf
 
+    sed -i "s/192.168.100.100/${IPADDR}/" ./env.local.conf
     source ./env.local.conf
 }
 
@@ -27,10 +37,10 @@ envsubst '\$IPADDR' < default.conf.tpl > default.conf
 envsubst < docker-compose.yml.tpl > docker-compose.yml
 
 
-echo "
-Usage: 
-    docker-compose up -d
+# echo "
+# Usage: 
+#     docker-compose up -d
 
-    openssl rand -base64 32 | cut -c 1-30
-    strings /dev/urandom |tr -dc A-Za-z0-9 | head -c16
-"
+#     openssl rand -base64 32 | cut -c 1-30
+#     strings /dev/urandom |tr -dc A-Za-z0-9 | head -c16
+# "

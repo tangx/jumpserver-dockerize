@@ -14,11 +14,27 @@ bash docker-install.sh [centos|ubuntu]
 
 + 启动程序
 ```bash
+
+# 准备安装目录
+mkdir -p /data/docker-compose/
+cp -a docker-compose/jumpserver /data/docker-compose/
+
+# 下载启动命令 docker-compose
+curl -sfL https://ops-software-binary-1255440668.cos.ap-chengdu.myqcloud.com/docker-compose/1.24.0/docker-compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose 
+
+# 初始化
 cd docker-compose/jumpserver
-cp -a env.conf env.local.conf
-# vi env.local.conf
-bash init.sh
+
+# 执行初始化命令
+# 例如: /bin/bash init.sh 192.168.1.203
+/bin/bash init.sh SERVER_IPADDR
+
+# 后台启动命令
 docker-compose up -d
+
+# 通过浏览器访问页面
+## 例如 http://192.168.1.203
+
 ```
 
 ## 注意
