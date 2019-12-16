@@ -43,6 +43,8 @@ services:
       SECRET_KEY: ${SECRET_KEY}
       BOOTSTRAP_TOKEN: ${BOOTSTRAP_TOKEN}
       DEBUG: "false"
+      ## OTP/MFA 配置
+      OTP_ISSUER_NAME: ${OTP_ISSUER_NAME}
       
       # 使用Mysql作为数据库配置
       DB_ENGINE: ${DB_ENGINE}

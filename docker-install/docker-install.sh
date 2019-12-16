@@ -39,6 +39,10 @@ function centos()
     # Step 4: 开启Docker服务
     systemctl restart docker
 
+    # Step 6: 时间同步
+    yum install -y ntp
+    systemctl restart ntp
+    systemctl enable ntp
 }
 
 function ubuntu()
@@ -61,6 +65,12 @@ function ubuntu()
 
     # Step 5: 启动docker
     systemctl restart docker
+    
+    # Step 6: 时间同步
+    apt install -y ntp
+    systemctl restart ntp
+    systemctl enable ntp
+
 }
 
 
