@@ -75,6 +75,6 @@ function ubuntu()
 
 source /etc/os-release
 
-case $1 in 
+case $ID in 
 centos|ubuntu) _daemonconfig; ${ID} ;;
 esac
