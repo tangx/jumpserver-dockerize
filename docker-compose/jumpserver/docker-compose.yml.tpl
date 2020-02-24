@@ -104,7 +104,7 @@ services:
 
   # guacamole: rdp/vnc client
   guacamole: 
-    image: tangx/jumpserver:guacamole-1.4.8
+    image: tangx/jumpserver:guacamole-1.4.8-no8009
     network_mode: host
     environment: 
       JUMPSERVER_SERVER: ${JUMPSERVER_SERVER}
